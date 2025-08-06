@@ -129,17 +129,29 @@ The first functional version was developed based on the official LlamaIndex [`Ci
 ---
 
 #### **Step 3: Unsuccessful Tuning & Pivotal Realization (5 hours)**
-Significant time was invested in trying to improve response quality by tuning hyperparameters and modifying the application logic. However, these efforts yielded no noticeable progress. This led to the critical realization that the issue was not with the logic, but likely with the core models themselves—specifically, the embedding model (originally Gemini) was not capturing the semantic nuance required.
+Significant time was invested in trying to improve response quality by tuning hyperparameters and modifying application logic. This included upgrading the LLM from `gemini-2.5-flash` to the more powerful `gemini-2.5-pro`, which did provide a **significant improvement** in response coherence. However, the fundamental issue of inaccurate retrieval and poor citation quality persisted. This led to the critical realization that the bottleneck was not the generative model, but the embedding model's inability to capture the semantic nuance required for accurate retrieval.
 
 ---
 
 #### **Step 4: The Breakthrough - Switching to OpenAI Embeddings (4 hours)**
-The turning point of the project came when the embedding model was switched to OpenAI's `text-embedding-3-large`. The improvement was immediate and dramatic, especially for documents in Arabic. With a high-quality semantic foundation, further optimizations to the `system_prompt` and `similarity_top_k` hyperparameter became effective. The UI was also refined during this stage to better present the high-quality results.
+The turning point of the project came when the embedding model was switched from Gemini to OpenAI's `text-embedding-3-large`. The improvement was immediate and dramatic, especially for documents in Arabic. With a high-quality semantic foundation, further optimizations became highly effective. Specifically, setting a high `similarity_top_k=15` yielded the best results by providing the LLM a much wider and more relevant context from which to synthesize its answer.
 
 ---
 
 #### **Step 5: Documentation & Deployment (4 hours)**
 With the core functionality working reliably, the final step involved writing comprehensive documentation (this `README.md` file), containerizing the application with Docker, and finalizing the deployment configuration.
+
+---
+
+## 💡 Key Learnings & Takeaways
+
+This project yielded several important insights for building high-quality RAG systems:
+
+1.  **The Embedding Model is Paramount**: The single most critical factor for this system's success was the quality of the embedding model. A powerful generative LLM cannot compensate for poor retrieval. For multilingual or specialized documents, investing in the best possible embedding model is non-negotiable.
+
+2.  **Model Performance on Arabic**: A key observation was the superior performance of OpenAI's models on Arabic language documents compared to the Gemini models tested. **For projects heavily focused on Arabic content, GPT-4 models currently appear to have a distinct advantage** in both embedding quality and generative understanding.
+
+3.  **A Wide Context Window is Key**: Once retrieval quality is high, providing the LLM with more context is highly beneficial. Increasing `similarity_top_k` to a large value like `15` allowed the model to see a broader set of relevant text chunks, leading to more comprehensive and accurate answers. A high `top_k` with a poor retriever, however, would only add noise.
 
 ---
 

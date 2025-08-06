@@ -206,7 +206,7 @@ def main():
         st.header("⚙️ Configuration")
         chunk_size = st.slider("Chunk Size", 256, 1024, 512, 128, help="Size of text chunks for new documents")
         memory_limit = st.slider("Memory Token Limit", 1000, 5000, 3000, 500, help="Max tokens in conversation memory")
-        similarity_top_k = st.slider("Similarity Search Results", 1, 15, 5, 1, help="Number of similar chunks to retrieve")
+        similarity_top_k = st.slider("Similarity Search Results", 1, 30, 15, 1, help="Number of similar chunks to retrieve")
 
         st.header("🔄 Actions")
         if st.button("🗑️ Clear Chat Memory"):
