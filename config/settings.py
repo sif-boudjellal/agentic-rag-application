@@ -10,7 +10,7 @@ LLAMAPARSE_API_KEY = os.getenv("LLAMAPARSE_API_KEY")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Models Configuration
-LLM_MODEL="models/gemini-2.5-flash"
+LLM_MODEL="models/gemini-2.5-pro"
 
 
 # Neo4j Configuration
