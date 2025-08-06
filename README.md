@@ -112,7 +112,7 @@ docker-compose up --build
 
 ## 🚀 Project Development Journey
 
-This RAG demo was developed over approximately **22 hours** across 4 working days. The journey involved iterative development, debugging, and a critical pivot in the choice of embedding models, which was key to achieving high-quality, accurate responses.
+This RAG demo was developed over approximately **22 hours** across 4 working days. A key strategic decision for this demo was to start with a **"naive" RAG system**—one without complex reasoning agents—to first establish a solid baseline for retrieval and citation. This journey involved iterative development, debugging, and a critical pivot in the choice of embedding models, which was key to achieving high-quality, accurate responses.
 
 **Total Development Time**: ~22 hours
 
